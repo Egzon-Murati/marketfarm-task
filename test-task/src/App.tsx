@@ -19,7 +19,7 @@ function App() {
   const [error, setError] = useState<any>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
   const [assetDetails, setAssetDetails] = useState<any>(undefined);
-  const [chartAssetData, setChartAssetData] = useState<any>(undefined);
+  const [chartAssetData, setChartAssetData] = useState<APRHistory[] | undefined>(undefined);
 
   useEffect(() => {
     const getData = async () => {
@@ -60,7 +60,7 @@ function App() {
     if (assetDetails) {
       for (let i = 1; i < 31; i++) {
         const newDate = new Date(date.getTime() + i * 1000 * 60 * 60 * 24);
-        datesCollection.push({date: `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`, value: assetDetails.aprDaily * i});
+        datesCollection.push({date: `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`, value: assetDetails.aprDaily * (Math.random() * (0.120 - 0.0200) + 0.0200)});
       }
       setChartAssetData(datesCollection);
     }
